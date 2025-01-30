@@ -15,17 +15,20 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	maxLen := 0
 	resStr := ""
-	for _, x := range s {
+	for i, x := range s {
 		if strings.ContainsRune(resStr, x) {
 			ind := strings.IndexRune(resStr, x)
-			resStr = resStr[ind:]
+			resStr = resStr[ind+1:]
+			resStr += string(x)
+			fmt.Println("after rebuilding", resStr, i, "\n")
 		} else {
 			resStr += string(x)
 		}
 		if len(resStr) > maxLen {
 			maxLen = len(resStr)
 		}
-		fmt.Println(resStr)
+
+		fmt.Println("after iteration", resStr)
 	}
 	return maxLen
 }
